@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import axios from "axios";
+
+import "./App.css";
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            artPosts: [],
+        };
+        this.getArt = this.getArt.bind(this);
+    }
+
+    componentDidMount() {
+        this.getArt();
+    }
+
+    getArt() {
+        axios
+            .get(
+                "https://collectionapi.metmuseum.org/public/collection/v1/objects/465"
+            )
+            .then((res) =>
+                this.setState({ artPosts: res.data }, () =>
+                    console.log(this.state.artPosts)
+                )
+            );
+    }
+
+    render() {
+        return <div className="App">{this.state.artPosts.objectID}</div>;
+    }
 }
 
 export default App;
