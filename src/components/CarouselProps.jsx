@@ -21,10 +21,10 @@ function SlickPersoProps(props) {
           className={styles.persoImage}
           top
           width="100%"
-          src={props.image}
+          src={props.img}
           alt="Card image cap"
         />
-        <CardBody className={styles.cardbody}>
+        <CardBody className={styles.cardBody}>
           <CardTitle className={styles.cardTitle}>{props.name}</CardTitle>
         </CardBody>
       </Card>

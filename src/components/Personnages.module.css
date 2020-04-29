@@ -24,18 +24,20 @@
 }
 
 .persoCartes {
-    border-radius: 20px;
+    border-radius: 0px;
     padding: 20px;
 }
 
 .perso {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, .2);
-    border-radius: 50px!important;
+
+}
+.perso:hover {
+    opacity: 0.6;
+    cursor: pointer;
 }
 
 .persoImage {
-    border-top-right-radius: 50px !important;
-    border-top-left-radius: 50px !important;
     height: 18vw !important;
     
 }
@@ -43,7 +45,6 @@
 .cardTitle {
     font-size: 1.25em;
 }
-
 
 .stat {
     text-align : left !important;
