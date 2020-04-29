@@ -1,16 +1,11 @@
 import React from "react";
 import {
-  Progress,
   Card,
-  Button,
   CardImg,
   CardTitle,
   CardBody,
-  Row,
-  Col,
-  CardText,
 } from "reactstrap";
-import styles from "./Personnages.module.css";
+import styles from "./Carousel.module.css";
 
 function SlickPersoProps(props) {
 
