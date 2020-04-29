@@ -15,7 +15,7 @@ import styles from "./RandomCards.module.css";
 
 //const RandomCards = ({ image, title, artist, department, date, period }) => {
 
-class RandomCards extends React.Component {
+class RandomCardsCountry extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -117,4 +117,4 @@ class RandomCards extends React.Component {
     }
 }
 
-export default RandomCards;
+export default RandomCardsCountry;

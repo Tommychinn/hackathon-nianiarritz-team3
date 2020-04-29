@@ -95,7 +95,7 @@ class CarouselArtist extends React.Component {
 
                 <Slider {...this.settings}>
                     {this.artist.map((artist) => {
-                        return <SlickPersoProps key={artist.name} {...artist} link="randomcard"/>;
+                        return <SlickPersoProps key={artist.name} {...artist} link="randomcard-artist"/>;
                     })}
                 </Slider>
             </div>

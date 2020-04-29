@@ -157,7 +157,7 @@ class CarouselDepartment extends React.Component {
 
                 <Slider {...this.settings}>
                     {this.department.map((department) => {
-                        return <SlickPersoProps key={department.derpartmentId} {...department}/>;
+                        return <SlickPersoProps key={department.derpartmentId} {...department} link="randomcard-departments"/>;
                     })}
                 </Slider>
             </div>

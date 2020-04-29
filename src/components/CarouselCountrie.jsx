@@ -103,6 +103,7 @@ class CarouselCountrie extends React.Component {
                             <SlickPersoProps
                                 key={countrie.name}
                                 {...countrie}
+                                link="randomcard-country"
                             />
                         );
                     })}

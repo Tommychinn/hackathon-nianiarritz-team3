@@ -15,7 +15,7 @@ import styles from "./RandomCards.module.css";
 
 //const RandomCards = ({ image, title, artist, department, date, period }) => {
 
-class RandomCardsArtists extends React.Component {
+class RandomCardsDepartments extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,7 +28,7 @@ class RandomCardsArtists extends React.Component {
     getData() {
         axios
             .get(
-                "https://collectionapi.metmuseum.org/public/collection/v1/search?artistOrCulture=true&q=picasso" 
+                "https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=1"
             )
             .then((res) => {
                 this.setState({ datas: res.data });
@@ -117,4 +117,4 @@ class RandomCardsArtists extends React.Component {
     }
 }
 
-export default RandomCardsArtists;
+export default RandomCardsDepartments;
