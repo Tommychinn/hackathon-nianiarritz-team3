@@ -3,6 +3,9 @@ import React from "react";
 import axios from "axios";
 
 import CarouselArtist from "./components/CarouselArtist";
+import CarouselDepartment from "./components/CarouselDepartment";
+import CarouselCountrie from "./components/CarouselCountrie";
+
 import "./App.css";
 
 class App extends React.Component {
@@ -34,7 +37,11 @@ class App extends React.Component {
         return (
             <div className="App">
                 {this.state.artPosts.objectID}
+                
                 <CarouselArtist />
+                <CarouselDepartment />
+                <CarouselCountrie />
+                
             </div>
         );
     }
