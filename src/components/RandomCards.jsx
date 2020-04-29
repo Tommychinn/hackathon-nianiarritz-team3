@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-
 import {
   Card,
   CardImg,
@@ -8,7 +7,11 @@ import {
   CardTitle,
   CardSubtitle,
   Button,
+  Col,
+  Row,
 } from 'reactstrap';
+
+import styles from './RandomCards.module.css';
 
 //const RandomCards = ({ image, title, artist, department, date, period }) => {
 
@@ -18,7 +21,6 @@ class RandomCards extends React.Component {
     this.state = {
       datas: {},
       objectDisplayed: {},
-      isLoading: true,
     };
     this.getData = this.getData.bind(this);
   }
@@ -37,10 +39,13 @@ class RandomCards extends React.Component {
             `https://collectionapi.metmuseum.org/public/collection/v1/objects/${randomId}`
           )
           .then((res) => {
-            if (res.data.primaryImage === '') {
+            if (
+              res.data.primaryImage === '' ||
+              res.data.primaryImageSmall === ''
+            ) {
               this.getData();
             } else {
-              this.setState({ objectDisplayed: res.data, isLoading: false });
+              this.setState({ objectDisplayed: res.data });
             }
           })
           .catch((error) => {
@@ -59,26 +64,41 @@ class RandomCards extends React.Component {
   }
 
   render() {
+    const { objectDisplayed } = this.state;
     return (
-      <div>
-        <Card className='text-center' style={{ width: '65rem' }}>
-          <CardImg
-            top
-            width='100%'
-            src={this.state.objectDisplayed.primaryImage}
-            alt='Card image cap'
-          />
-
-          <CardBody>
-            <CardTitle>{this.state.objectDisplayed.title}</CardTitle>
-            <CardSubtitle>
-              {this.state.objectDisplayed.artistDisplayName}
-            </CardSubtitle>
-            <CardSubtitle>{this.state.objectDisplayed.department}</CardSubtitle>
-            <CardSubtitle>{this.state.objectDisplayed.objectDate}</CardSubtitle>
-          </CardBody>
-        </Card>
-        <Button color='info' onClick={this.getData}>
+      <div className={styles.container}>
+        <Row>
+          <Col>
+            <Card className='text-center' style={{ width: '75vw' }}>
+              <Row className='no-gutters'>
+                <Col md='8'>
+                  <CardImg
+                    className={styles.CardImg}
+                    top
+                    width='100%'
+                    src={objectDisplayed.primaryImageSmall}
+                    alt={objectDisplayed.title}
+                  />
+                </Col>
+                <Col md='4'>
+                  <CardBody className={styles.cardBody}>
+                    <CardTitle>{objectDisplayed.title}</CardTitle>
+                    <CardSubtitle>
+                      {objectDisplayed.artistDisplayName === '' ? (
+                        <div>Artist unknown</div>
+                      ) : (
+                        objectDisplayed.artistDisplayName
+                      )}
+                    </CardSubtitle>
+                    <CardSubtitle>{objectDisplayed.department}</CardSubtitle>
+                    <CardSubtitle>{objectDisplayed.objectDate}</CardSubtitle>
+                  </CardBody>
+                </Col>
+              </Row>
+            </Card>
+          </Col>
+        </Row>
+        <Button color='info' className={styles.button} onClick={this.getData}>
           reload
         </Button>
       </div>
