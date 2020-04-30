@@ -94,7 +94,7 @@ class CarouselCountrie extends React.Component {
       <div className={styles.personnages}>
         <Row>
           <Col>
-            <h1>Les pays / countries + populaires</h1>
+            <h1>Countries</h1>
           </Col>
         </Row>
 

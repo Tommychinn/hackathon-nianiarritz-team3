@@ -95,7 +95,7 @@ class CarouselArtist extends React.Component {
       <div className={styles.personnages}>
         <Row>
           <Col>
-            <h1>Les Artistes Peintre</h1>
+            <h1>Artists</h1>
           </Col>
         </Row>
 

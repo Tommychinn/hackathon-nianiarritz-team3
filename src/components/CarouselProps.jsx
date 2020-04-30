@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Card, CardImg, CardTitle, CardBody } from 'reactstrap';
+import { Card, CardImg, CardTitle } from 'reactstrap';
 import styles from './Carousel.module.css';
 
 function SlickPersoProps(props) {
@@ -14,9 +14,7 @@ function SlickPersoProps(props) {
           src={props.img}
           alt='Card image cap'
         />
-        <CardBody className={styles.cardBody}>
-          <CardTitle className={styles.cardTitle}>{props.name}</CardTitle>
-        </CardBody>
+        <CardTitle className={styles.cardTitle}>{props.name}</CardTitle>
       </Card>
     </div>
   );

@@ -167,7 +167,7 @@ class CarouselDepartment extends React.Component {
       <div className={styles.personnages}>
         <Row>
           <Col>
-            <h1>Les Départements les + populaires</h1>
+            <h1>Departments</h1>
           </Col>
         </Row>
 
@@ -176,6 +176,7 @@ class CarouselDepartment extends React.Component {
             return (
               <Link to={`/randomcard-departments/${department.departmentId}`}>
                 <SlickPersoProps
+                  className={styles.linkStyle}
                   key={department.departmentId}
                   {...department}
                 />
