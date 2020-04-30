@@ -15,8 +15,6 @@ import {
 
 import styles from "./RandomCards.module.css";
 
-//const RandomCards = ({ image, title, artist, department, date, period }) => {
-
 class RandomCardsDepartments extends React.Component {
   constructor(props) {
     super(props);
@@ -27,38 +25,35 @@ class RandomCardsDepartments extends React.Component {
     this.getData = this.getData.bind(this);
   }
 
-  getData() {
-    axios
-      .get(
-        `https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=${this.props.match.params.id}`
-      )
-      .then((res) => {
-        this.setState({ datas: res.data });
-        const randomId = this.randomId(this.state.datas.objectIDs);
+  getData(props) {
+    const params = this.props.match.params;
+    console.log(params.id);
+    const url = `https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=${params.id}`;
+    console.log(url);
 
-        axios
-          .get(
-            `https://collectionapi.metmuseum.org/public/collection/v1/objects/${randomId}`
-          )
-          .then((res) => {
-            if (
-              res.data.primaryImage === "" ||
-              res.data.primaryImageSmall === ""
-            ) {
-              this.getData();
-            } else {
-              this.setState({ objectDisplayed: res.data });
-            }
-          })
-          .catch((error) => {
-            console.log(error.response.status);
-            this.getData();
-          });
-      });
-  }
+    axios.get(url).then(async (res) => {
+      try {
+        const res_1 = await axios.get(
+          `https://collectionapi.metmuseum.org/public/collection/v1/objects/${
+            res.data.objectIDs[
+              Math.floor(Math.random() * res.data.objectIDs.length)
+            ]
+          }`
+        );
 
-  randomId(array) {
-    return Math.floor(Math.random() * Math.floor(array.length));
+        if (
+          res_1.data.primaryImage === '' ||
+          res_1.data.primaryImageSmall === ''
+        ) {
+          this.getData(props);
+        } else {
+          this.setState({ objectDisplayed: res_1.data });
+        }
+      } catch (error) {
+        console.log(error.response.status);
+        this.getData(props);
+      }
+    });
   }
 
   componentDidMount() {

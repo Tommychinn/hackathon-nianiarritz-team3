@@ -15,9 +15,7 @@ import {
 
 import styles from "./RandomCards.module.css";
 
-//const RandomCards = ({ image, title, artist, department, date, period }) => {
-
-class RandomCardsCountry extends React.Component {
+class RandomCardsDepartments extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,39 +24,36 @@ class RandomCardsCountry extends React.Component {
     };
     this.getData = this.getData.bind(this);
   }
+  
+  getData(props) {
+    const params = this.props.match.params;
+    console.log(params.name);
+    const url = `https://collectionapi.metmuseum.org/public/collection/v1/search?geoLocation=${params.name}&q=${params.name}`;
+    console.log(url);
 
-  getData() {
-    axios
-      .get(
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?geoLocation=France&q=France"
-      )
-      .then((res) => {
-        this.setState({ datas: res.data });
-        const randomId = this.randomId(this.state.datas.objectIDs);
+    axios.get(url).then(async (res) => {
+      try {
+        const res_1 = await axios.get(
+          `https://collectionapi.metmuseum.org/public/collection/v1/objects/${
+            res.data.objectIDs[
+              Math.floor(Math.random() * res.data.objectIDs.length)
+            ]
+          }`
+        );
 
-        axios
-          .get(
-            `https://collectionapi.metmuseum.org/public/collection/v1/objects/${randomId}`
-          )
-          .then((res) => {
-            if (
-              res.data.primaryImage === "" ||
-              res.data.primaryImageSmall === ""
-            ) {
-              this.getData();
-            } else {
-              this.setState({ objectDisplayed: res.data });
-            }
-          })
-          .catch((error) => {
-            console.log(error.response.status);
-            this.getData();
-          });
-      });
-  }
-
-  randomId(array) {
-    return Math.floor(Math.random() * Math.floor(array.length));
+        if (
+          res_1.data.primaryImage === '' ||
+          res_1.data.primaryImageSmall === ''
+        ) {
+          this.getData(props);
+        } else {
+          this.setState({ objectDisplayed: res_1.data });
+        }
+      } catch (error) {
+        console.log(error.response.status);
+        this.getData(props);
+      }
+    });
   }
 
   componentDidMount() {
@@ -121,4 +116,4 @@ class RandomCardsCountry extends React.Component {
   }
 }
 
-export default RandomCardsCountry;
+export default RandomCardsDepartments;

@@ -12,8 +12,11 @@ export default function Routzer() {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/carousel' component={CarouselContainer} />
-        <Route path='/randomcard-artist' component={RandomCardsArtists} />
-        <Route path='/randomcard-country' component={RandomCardsCountry} />
+        <Route path='/randomcard-artist/:name' component={RandomCardsArtists} />
+        <Route
+          path='/randomcard-country/:name'
+          component={RandomCardsCountry}
+        />
         <Route
           path='/randomcard-departments/:id'
           component={RandomCardsDepartments}
