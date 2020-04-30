@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { Link } from "react-router-dom";
+import axios from "axios";
 import {
   Card,
   CardImg,
@@ -11,9 +11,9 @@ import {
   Button,
   Col,
   Row,
-} from 'reactstrap';
+} from "reactstrap";
 
-import styles from './RandomCards.module.css';
+import styles from "./RandomCards.module.css";
 
 class RandomCardsDepartments extends React.Component {
   constructor(props) {
@@ -42,8 +42,8 @@ class RandomCardsDepartments extends React.Component {
         );
 
         if (
-          res_1.data.primaryImage === '' ||
-          res_1.data.primaryImageSmall === ''
+          res_1.data.primaryImage === "" ||
+          res_1.data.primaryImageSmall === ""
         ) {
           this.getData(props);
         } else {
@@ -64,24 +64,33 @@ class RandomCardsDepartments extends React.Component {
     const { objectDisplayed } = this.state;
     return (
       <div className={styles.container}>
+        <Row className={styles.buttonLeft}>
+          <Col>
+            <Link to="/">
+              <Button color="danger" className={`${styles.button}`}>
+                Home
+              </Button>
+            </Link>
+          </Col>
+        </Row>
         <Row>
           <Col>
-            <Card className='text-center'>
-              <Row className='no-gutters'>
-                <Col md='8'>
+            <Card className="text-center">
+              <Row className="no-gutters">
+                <Col md="8">
                   <CardImg
                     className={styles.CardImg}
                     top
-                    width='100%'
+                    width="100%"
                     src={objectDisplayed.primaryImageSmall}
                     alt={objectDisplayed.title}
                   />
                 </Col>
-                <Col md='4'>
+                <Col md="4">
                   <CardBody className={styles.cardBody}>
                     <CardTitle>{objectDisplayed.title}</CardTitle>
                     <CardSubtitle>
-                      {objectDisplayed.artistDisplayName === '' ? (
+                      {objectDisplayed.artistDisplayName === "" ? (
                         <div>Artist unknown</div>
                       ) : (
                         objectDisplayed.artistDisplayName
@@ -97,18 +106,15 @@ class RandomCardsDepartments extends React.Component {
         </Row>
         <Row>
           <Col>
-            R{' '}
+            {" "}
             <Button
-              color='info'
+              outline
+              color="danger"
               className={styles.button}
-              onClick={this.getData}>
+              onClick={this.getData}
+            >
               Reload
             </Button>
-            <Link to='/'>
-              <Button color='danger' className={styles.button}>
-                Home
-              </Button>
-            </Link>
           </Col>
         </Row>
       </div>
