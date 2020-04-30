@@ -24,7 +24,7 @@ class RandomCardsDepartments extends React.Component {
     };
     this.getData = this.getData.bind(this);
   }
-  
+
   getData(props) {
     const params = this.props.match.params;
     console.log(params.name);
@@ -42,8 +42,8 @@ class RandomCardsDepartments extends React.Component {
         );
 
         if (
-          res_1.data.primaryImage === '' ||
-          res_1.data.primaryImageSmall === ''
+          res_1.data.primaryImage === "" ||
+          res_1.data.primaryImageSmall === ""
         ) {
           this.getData(props);
         } else {
@@ -64,6 +64,15 @@ class RandomCardsDepartments extends React.Component {
     const { objectDisplayed } = this.state;
     return (
       <div className={styles.container}>
+        <Row className={styles.buttonLeft}>
+          <Col>
+            <Link to="/">
+              <Button color="danger" className={`${styles.button}`}>
+                Home
+              </Button>
+            </Link>
+          </Col>
+        </Row>
         <Row>
           <Col>
             <Card className="text-center">
@@ -98,17 +107,13 @@ class RandomCardsDepartments extends React.Component {
         <Row>
           <Col>
             <Button
-              color="info"
+              outline
+              color="danger"
               className={styles.button}
               onClick={this.getData}
             >
               Reload
             </Button>
-            <Link to="/">
-              <Button color="danger" className={styles.button}>
-                Home
-              </Button>
-            </Link>
           </Col>
         </Row>
       </div>

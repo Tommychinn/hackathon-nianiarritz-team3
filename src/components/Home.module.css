@@ -1,5 +1,5 @@
 .container {
-  background-image: url("https://www.voyageway.com/wp-content/uploads/2019/01/metropolitan-museum-of-art.jpg");
+  background-image: url('https://www.voyageway.com/wp-content/uploads/2019/01/metropolitan-museum-of-art.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -18,9 +18,9 @@
 
 .button {
   margin-top: 6rem;
-  transition: all 500ms ease-in-out;
 }
 
 .button:hover {
   transform: scale(1.1);
+  transition: all 500ms ease-in-out;
 }
