@@ -10,21 +10,14 @@ class CarouselContainer extends React.Component {
   constructor() {
     super();
     this.state = { param: '' };
-    this.hancleClick = this.hancleClick.bind(this);
-  }
-
-  hancleClick(e) {
-    this.setState({ param: e.target.value }, () =>
-      console.log(this.state.param)
-    );
   }
 
   render() {
     return (
       <div className='App'>
-        <CarouselArtist getData={this.hancleClick} />
-        <CarouselDepartment getData={this.hancleClick} />
-        <CarouselCountrie getData={this.hancleClick} />
+        <CarouselArtist />
+        <CarouselDepartment />
+        <CarouselCountrie />
         <Link to='/'>
           <button>home</button>
         </Link>

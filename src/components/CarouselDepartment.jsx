@@ -163,7 +163,6 @@ class CarouselDepartment extends React.Component {
   ];
 
   render() {
-    const { getData } = this.props;
     return (
       <div className={styles.personnages}>
         <Row>
