@@ -14,9 +14,7 @@ import {
 
 import styles from './RandomCards.module.css';
 
-//const RandomCards = ({ image, title, artist, department, date, period }) => {
-
-class RandomCardsArtists extends React.Component {
+class RandomCardsDepartments extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,38 +24,42 @@ class RandomCardsArtists extends React.Component {
     this.getData = this.getData.bind(this);
   }
 
-  getData() {
-    axios
-      .get(
-        'https://collectionapi.metmuseum.org/public/collection/v1/search?artistOrCulture=true&q=pollock'
-      )
-      .then((res) => {
-        this.setState({ datas: res.data });
-        const randomId = this.randomId(this.state.datas.objectIDs);
+  changeName = (name) => {
+    return name.replace(' ', '%20');
+  };
 
-        axios
-          .get(
-            `https://collectionapi.metmuseum.org/public/collection/v1/objects/${randomId}`
-          )
-          .then((res) => {
-            if (
-              res.data.primaryImage === '' ||
-              res.data.primaryImageSmall === ''
-            ) {
-              this.getData();
-            } else {
-              this.setState({ objectDisplayed: res.data });
-            }
-          })
-          .catch((error) => {
-            console.log(error.response.status);
-            this.getData();
-          });
-      });
-  }
+  getData(props) {
+    const params = this.props.match.params;
+    console.log(params.name);
+    const url = `https://collectionapi.metmuseum.org/public/collection/v1/search?artistOrCulture=true&q=${this.changeName(
+      params.name
+    )}`;
 
-  randomId(array) {
-    return Math.floor(Math.random() * Math.floor(array.length));
+    console.log(url);
+
+    axios.get(url).then(async (res) => {
+      try {
+        const res_1 = await axios.get(
+          `https://collectionapi.metmuseum.org/public/collection/v1/objects/${
+            res.data.objectIDs[
+              Math.floor(Math.random() * res.data.objectIDs.length)
+            ]
+          }`
+        );
+
+        if (
+          res_1.data.primaryImage === '' ||
+          res_1.data.primaryImageSmall === ''
+        ) {
+          this.getData(props);
+        } else {
+          this.setState({ objectDisplayed: res_1.data });
+        }
+      } catch (error) {
+        console.log(error.response.status);
+        this.getData(props);
+      }
+    });
   }
 
   componentDidMount() {
@@ -107,4 +109,4 @@ class RandomCardsArtists extends React.Component {
   }
 }
 
-export default RandomCardsArtists;
+export default RandomCardsDepartments;
