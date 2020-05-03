@@ -62,7 +62,7 @@ class CarouselDepartment extends React.Component {
     {
       departmentId: 4,
       img:
-        'https://www.metmuseum.org/-/media/images/about-the-met/curatorial-departments/arms-and-armor/arms-and-armor_marquee.jpg?as=1&la=en&mh=920&mw=2320&hash=54AF92202BA09787BC6C7F411B8A2644',
+        'https://images.metmuseum.org/CRDImages/aa/web-large/61902.jpg',
       name: 'Arms and Armor',
     },
     {
