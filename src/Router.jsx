@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import CarouselContainer from './components/CarouselContainer';
-import RandomCardsArtists from './components/RandomCardsArtists';
+import RandomCardsDate from './components/RandomCardsDate';
 import RandomCardsCountry from './components/RandomCardsCountry';
 import RandomCardsDepartments from './components/RandomCardsDepartments.jsx';
 
@@ -12,7 +12,7 @@ export default function Routzer() {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/carousel' component={CarouselContainer} />
-        <Route path='/randomcard-artist/:name' component={RandomCardsArtists} />
+        <Route path='/randomcard-date/:id' component={RandomCardsDate} />
         <Route
           path='/randomcard-country/:name'
           component={RandomCardsCountry}
