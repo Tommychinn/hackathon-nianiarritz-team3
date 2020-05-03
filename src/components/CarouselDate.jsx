@@ -133,13 +133,13 @@ class CarouselDate extends React.Component {
     {
       departmentId: "dateBegin=1800&dateEnd=1900",
       img:
-        'https://www.ecopetit.cat/wpic/mpic/157-1578510_libraries-reading-wallpapers-beautiful-fantasy-library-art.jpg',
+        'https://images.metmuseum.org/CRDImages/ep/original/DT1567.jpg',
       name: '19th Century',
     },
     {
       departmentId: "dateBegin=1900&dateEnd=2000",
       img:
-        'https://sadanduseless.b-cdn.net/wp-content/uploads/2019/10/killer-art12.jpg',
+        'https://images.metmuseum.org/CRDImages/as/web-large/DP122777.jpg',
       name: '20th Century',
     },
   ];
